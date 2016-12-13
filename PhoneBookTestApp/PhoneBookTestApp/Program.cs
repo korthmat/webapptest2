@@ -45,10 +45,7 @@ namespace PhoneBookTestApp
                 Console.WriteLine("Printing the phone book to the console...");
                 foreach (Person person in phoneBook.getAllPeople())
                 {
-                    Console.WriteLine(person.Name);
-                    Console.WriteLine(person.Address);
-                    Console.WriteLine(person.PhoneNumber);
-                    Console.WriteLine();
+                    Console.WriteLine(person);
                 }
 
                 // TODO: find Cynthia Smith and print out just her entry
