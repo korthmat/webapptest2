@@ -35,6 +35,7 @@ namespace PhoneBookTestApp
             {
                 using (SQLiteCommand command = new SQLiteCommand(commandString, connection))
                 {
+                    // TODO: Refactor this code - redundant.
                     using (IDataReader reader = command.ExecuteReader())
                     {
                         int nameOrdinal = reader.GetOrdinal("NAME");
@@ -63,6 +64,7 @@ namespace PhoneBookTestApp
             {
                 using (SQLiteCommand command = new SQLiteCommand("SELECT NAME, PHONENUMBER, ADDRESS FROM PHONEBOOK", connection))
                 {
+                    // TODO: Refactor this code - redundant.
                     using (IDataReader reader = command.ExecuteReader())
                     {
                         int nameOrdinal = reader.GetOrdinal("NAME");
