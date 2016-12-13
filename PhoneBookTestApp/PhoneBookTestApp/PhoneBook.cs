@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace PhoneBookTestApp
 {
@@ -7,7 +8,20 @@ namespace PhoneBookTestApp
     {
         public void addPerson(Person person)
         {
-            throw new System.NotImplementedException();
+            using (SQLiteConnection connection = DatabaseUtil.GetConnection())
+            {
+                string commandString =
+                    String.Format(
+                        "INSERT INTO PHONEBOOK (NAME, PHONENUMBER, ADDRESS) VALUES ('{0}', '{1}', '{2}')",
+                        person.Name,
+                        person.PhoneNumber,
+                        person.Address);
+
+                using (SQLiteCommand command = new SQLiteCommand(commandString, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public Person findPerson(string firstName, string lastName)
