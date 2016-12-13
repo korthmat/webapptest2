@@ -41,7 +41,7 @@ namespace PhoneBookTestApp
                         int phoneNumberOrdinal = reader.GetOrdinal("PHONENUMBER");
                         int addressOrdinal = reader.GetOrdinal("ADDRESS");
 
-                        while (reader.Read())
+                        if (reader.Read())
                         {
                             found = new Person();
                             found.Address = reader.GetString(addressOrdinal);
