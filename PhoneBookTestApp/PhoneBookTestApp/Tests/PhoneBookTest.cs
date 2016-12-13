@@ -9,6 +9,7 @@ namespace PhoneBookTestAppTests
     [TestFixture]
     public class PhoneBookTest
     {
+        // TODO: Should check to make sure the person being added in this test, can be found.
         [Test]
         public void addPerson()
         {
@@ -55,7 +56,22 @@ namespace PhoneBookTestAppTests
         [Test]
         public void findPerson()
         {
-            Assert.Fail();
+            try
+            {
+                DatabaseUtil.initializeDatabase();
+
+                IPhoneBook phoneBook = new PhoneBook();
+
+                // "Chris Johnson" is added by the DatabaseUtil.initializeDatabase call.
+                Assert.IsNotNull(phoneBook.findPerson("Chris Johnson"));
+
+                // "Jake Blues", however, is not.
+                Assert.IsNull(phoneBook.findPerson("Jake Blues"));
+            }
+            finally
+            {
+                DatabaseUtil.CleanUp();
+            }
         }
     }
 
