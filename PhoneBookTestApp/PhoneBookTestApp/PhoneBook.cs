@@ -27,7 +27,33 @@ namespace PhoneBookTestApp
 
         public Person findPerson(string firstName, string lastName)
         {
-            throw new System.NotImplementedException();
+            Person found = null;
+
+            string nameToFind = String.Format("{0} {1}", firstName, lastName);
+            string commandString = String.Format("SELECT NAME, PHONENUMBER, ADDRESS FROM PHONEBOOK WHERE NAME = '{0}'", nameToFind);
+
+            using (SQLiteConnection connection = DatabaseUtil.GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(commandString, connection))
+                {
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        int nameOrdinal = reader.GetOrdinal("NAME");
+                        int phoneNumberOrdinal = reader.GetOrdinal("PHONENUMBER");
+                        int addressOrdinal = reader.GetOrdinal("ADDRESS");
+
+                        while (reader.Read())
+                        {
+                            found = new Person();
+                            found.Address = reader.GetString(addressOrdinal);
+                            found.Name = reader.GetString(nameOrdinal);
+                            found.PhoneNumber = reader.GetString(phoneNumberOrdinal);
+                        }
+                    }
+                }
+            }
+
+            return found;
         }
 
         public IEnumerable<Person> getAllPeople()

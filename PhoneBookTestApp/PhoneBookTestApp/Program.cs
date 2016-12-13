@@ -49,20 +49,17 @@ namespace PhoneBookTestApp
                 }
 
                 // TODO: find Cynthia Smith and print out just her entry
-                //Console.WriteLine("Finding Cynthia Smith in the phone book...");
-                //Person cynthiaSmith = phoneBook.findPerson("Cynthia", "Smith");
-                //if (cynthiaSmith == null)
-                //    Console.WriteLine("\"Cynthia Smith\" is not in the phone book.");
-                //else
-                //{
-                //    Console.WriteLine(cynthiaSmith.Name);
-                //    Console.WriteLine(cynthiaSmith.Address);
-                //    Console.WriteLine(cynthiaSmith.PhoneNumber);
-                //}
+                Console.WriteLine("Finding Cynthia Smith in the phone book...");
+                Person cynthiaSmith = phoneBook.findPerson("Cynthia", "Smith");
+                if (cynthiaSmith == null)
+                    Console.WriteLine("\"Cynthia Smith\" is not in the phone book.");
+                else
+                    Console.WriteLine(cynthiaSmith);
 
                 // TODO: insert the new person objects into the database
                 // TODO: Didn't we already do that above?  The instructions say to "person objects and put them in the PhoneBook and database" above...
 
+                Console.WriteLine("Press Enter or Return to close");
                 Console.ReadLine();
             }
             finally
