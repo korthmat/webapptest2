@@ -50,7 +50,7 @@ namespace PhoneBookTestApp
 
                 // TODO: find Cynthia Smith and print out just her entry
                 Console.WriteLine("Finding Cynthia Smith in the phone book...");
-                Person cynthiaSmith = phoneBook.findPerson("Cynthia", "Smith");
+                Person cynthiaSmith = phoneBook.findPerson("Cynthia Smith");
                 if (cynthiaSmith == null)
                     Console.WriteLine("\"Cynthia Smith\" is not in the phone book.");
                 else

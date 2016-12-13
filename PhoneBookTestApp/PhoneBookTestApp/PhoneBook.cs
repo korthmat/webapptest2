@@ -25,12 +25,11 @@ namespace PhoneBookTestApp
             }
         }
 
-        public Person findPerson(string firstName, string lastName)
+        public Person findPerson(string name)
         {
             Person found = null;
 
-            string nameToFind = String.Format("{0} {1}", firstName, lastName);
-            string commandString = String.Format("SELECT NAME, PHONENUMBER, ADDRESS FROM PHONEBOOK WHERE NAME = '{0}'", nameToFind);
+            string commandString = String.Format("SELECT NAME, PHONENUMBER, ADDRESS FROM PHONEBOOK WHERE NAME = '{0}'", name);
 
             using (SQLiteConnection connection = DatabaseUtil.GetConnection())
             {
