@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using PhoneBookTestApp;
+using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Linq;
 
 namespace PhoneBookTestAppTests
 {
@@ -67,6 +69,24 @@ namespace PhoneBookTestAppTests
 
                 // "Jake Blues", however, is not.
                 Assert.IsNull(phoneBook.findPerson("Jake Blues"));
+            }
+            finally
+            {
+                DatabaseUtil.CleanUp();
+            }
+        }
+
+        [Test]
+        public void getAllPeople()
+        {
+            try
+            {
+                DatabaseUtil.initializeDatabase();
+
+                IPhoneBook phoneBook = new PhoneBook();
+                IEnumerable<Person> people = phoneBook.getAllPeople();
+
+                Assert.AreEqual(2, people.Count());
             }
             finally
             {
